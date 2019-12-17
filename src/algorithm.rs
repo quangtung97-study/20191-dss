@@ -7,8 +7,12 @@ pub struct Segment {
 }
 
 pub fn segment(a: Point, b: Point) -> Segment {
-    assert!(a.x < b.x);
-    Segment { a, b }
+    assert!(a.x != b.x);
+    if a.x < b.x {
+        Segment { a: a, b: b }
+    } else {
+        Segment { a: b, b: a }
+    }
 }
 
 fn sort_points(points: &mut [Point]) {

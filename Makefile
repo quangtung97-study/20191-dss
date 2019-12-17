@@ -8,3 +8,6 @@ test:
 
 format:
 	python draw.py
+
+count:
+	git ls-files "*.rs" | xargs wc -l

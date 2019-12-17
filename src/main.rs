@@ -1,7 +1,9 @@
 mod algorithm;
+mod fuzzy;
 mod point;
 
-use algorithm::{segment, Segment};
+use algorithm::{segment, show_segments, supremum, Segment};
+use fuzzy::{Function, FuzzySet};
 use point::point;
 use std::fs::File;
 use std::io::{BufRead, BufReader, Write};
@@ -32,12 +34,41 @@ fn output(segments: &[Segment]) {
     }
 }
 
-fn main() {
+#[allow(dead_code)]
+fn run_supremum() {
     let segments = input();
 
     algorithm::show_segments(&segments);
-    let result = algorithm::supremum(&segments);
+    let result = supremum(&segments);
     algorithm::show_segments(&result);
 
     output(&result);
+}
+
+fn main() {
+    let mut set = {
+        let a = point(0.0, 0.0);
+        let b = point(0.4, 1.0);
+        let c = point(1.0, 0.2);
+
+        FuzzySet {
+            segments: vec![segment(a, b), segment(b, c)],
+        }
+    };
+
+    let func = {
+        let a = point(0.0, 0.0);
+        let b = point(0.6, 1.0);
+        let c = point(1.0, 0.0);
+
+        Function {
+            segments: vec![segment(a, b), segment(b, c)],
+        }
+    };
+
+    for _ in 0..20 {
+        set = fuzzy::apply(&set, &func);
+        show_segments(&set.segments);
+        output(&set.segments);
+    }
 }
