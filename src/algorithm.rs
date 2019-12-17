@@ -180,37 +180,27 @@ fn sort_segments(segments: &mut [Segment]) {
 
 #[allow(dead_code)]
 pub fn supremum(segments: &[Segment]) -> Vec<Segment> {
-    let mut vec_a = Vec::from(segments);
-    let mut vec_b = Vec::new();
-    let mut old: &mut Vec<Segment> = &mut vec_a;
-    let mut new: &mut Vec<Segment> = &mut vec_b;
+    let mut segments = Vec::from(segments);
 
-    sort_segments(old);
-    loop {
-        show_segments(old);
+    sort_segments(&mut segments);
+    'outer: loop {
+        let len = segments.len();
+        for i in 0..(len - 1) {
+            let sa = segments[i];
+            let sb = segments[i + 1];
 
-        let mut next_it = old.iter();
-        next_it.next();
-        let pair_it = old.iter().zip(next_it);
+            if can_intersect(sa, sb) {
+                segments.swap_remove(i + 1);
+                segments.swap_remove(i);
 
-        new.clear();
-        let mut any_intersect = false;
-        for (sa, sb) in pair_it {
-            if can_intersect(*sa, *sb) {
-                any_intersect = true;
-                intersect(*sa, *sb, new);
+                intersect(sa, sb, &mut segments);
+                sort_segments(&mut segments);
+
+                continue 'outer;
             }
         }
 
-        if !any_intersect {
-            return Vec::from(&old[..]);
-        }
-
-        let tmp = old;
-        old = new;
-        new = tmp;
-
-        sort_segments(old);
+        return segments;
     }
 }
 
