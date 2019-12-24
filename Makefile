@@ -7,7 +7,7 @@ test:
 	cargo test
 
 format:
-	python draw.py
+	cd example2 && python draw3d.py
 
 count:
 	git ls-files "*.rs" | xargs wc -l

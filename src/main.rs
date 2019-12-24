@@ -27,8 +27,8 @@ fn input() -> Vec<Segment> {
     result
 }
 
-fn output(segments: &[Segment]) {
-    let mut file = File::create("output").unwrap();
+fn write_data(filename: &str, segments: &[Segment]) {
+    let mut file = File::create(filename).unwrap();
     for s in segments.iter() {
         writeln!(file, "{} {} {} {}", s.a.x, s.a.y, s.b.x, s.b.y).unwrap();
     }
@@ -42,14 +42,15 @@ fn run_supremum() {
     let result = supremum(&segments);
     algorithm::show_segments(&result);
 
-    output(&result);
+    write_data("output", &result);
 }
 
-fn main() {
+#[allow(dead_code)]
+fn run_example2() {
     let mut set = {
         let a = point(0.0, 0.0);
-        let b = point(0.4, 1.0);
-        let c = point(1.0, 0.2);
+        let b = point(0.75, 1.0);
+        let c = point(1.0, 0.0);
 
         FuzzySet {
             segments: vec![segment(a, b), segment(b, c)],
@@ -58,7 +59,7 @@ fn main() {
 
     let func = {
         let a = point(0.0, 0.0);
-        let b = point(0.6, 1.0);
+        let b = point(0.25, 0.9);
         let c = point(1.0, 0.0);
 
         Function {
@@ -66,9 +67,49 @@ fn main() {
         }
     };
 
-    for _ in 0..20 {
+    write_data("example2/data/input", &set.segments);
+    write_data("example2/data/func", &func.segments);
+    for _ in 0..2 {
         set = fuzzy::apply(&set, &func);
         show_segments(&set.segments);
-        output(&set.segments);
+        write_data("example2/data/output", &set.segments);
+        println!("------------------------------------------");
     }
+}
+
+#[allow(dead_code)]
+fn run_example2_3d() {
+    let mut set = {
+        let a = point(0.0, 0.0);
+        let b = point(0.75, 1.0);
+        let c = point(1.0, 0.0);
+
+        FuzzySet {
+            segments: vec![segment(a, b), segment(b, c)],
+        }
+    };
+
+    let func = {
+        let a = point(0.0, 0.0);
+        let b = point(0.25, 0.9);
+        let c = point(1.0, 0.0);
+
+        Function {
+            segments: vec![segment(a, b), segment(b, c)],
+        }
+    };
+
+    write_data("example2/data3d/input", &set.segments);
+    write_data("example2/data3d/func", &func.segments);
+    for i in 0..20 {
+        set = fuzzy::apply(&set, &func);
+        show_segments(&set.segments);
+        let path = format!("example2/data3d/output{}", i + 1);
+        write_data(&path, &set.segments);
+        println!("------------------------------------------");
+    }
+}
+
+fn main() {
+    run_example2_3d();
 }

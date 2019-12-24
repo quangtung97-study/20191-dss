@@ -19,7 +19,32 @@ $z_f: \mathbb{F}(X) \rightarrow \mathbb{F}(Y)$, trong đó $\mathbb{F}(X)$
 Biểu thức \eqref{eq:1} có thể được sử dụng để mở rộng
 lý thuyết các hệ động học. Cặp $(X, f)$ với X là không gian topo (topological space) 
 và $f: X \rightarrow X$ là ánh xạ liên tục được gọi là một hệ động học rời rạc
-(\textit{discrete dynamical system}). Kloeden trong bài báo \cite{Kloeden}
+(\textit{discrete dynamical system}).
+Kloeden trong bài báo \cite{Kloeden} đã đề xuất một mô hình toán học 
+kết nối giữa lý thuyết của hệ động học (không mờ) sang lý thuyết hệ động học mờ. 
+Bằng việc sử dụng mô hình này và phương trình \eqref{eq:1}, cho bất kì một hệ động
+học $(X, f)$, ta có thể suy ra hệ động học mờ $(\mathbb{F}(X), z_f)$, từ đó ta 
+có thể nghiên cứu các tính chất của các hệ động lực mờ từ những tính chất đã được 
+nghiên cứu hàng thập kỷ cho các hệ động học cổ điển. Đã có nhiều bài báo khoa học
+nghiên cứu về topic này như \cite{topological-entropy}, \cite{diffusion-equation},
+\cite{Kloeden} TODO.
 
+Tuy nhiên, vấn đề thường xuyên xảy ra khi mà cần tính toán phương trình \eqref{eq:1}
+các bài toán ứng dụng. Nhìn chung các bài toán liên quan đến nguyên lý mở rộng 
+Zadeh đều có thể là những bài toán khó TODO. Sự khó khăn đến từ việc tính hàm ngược $f^{-1}$
+tại điểm bất kì. Do đó, rất nhiều nhóm nghiên cứu đã đề xuất nhiều cách tiếp cận 
+khác nhau để tìm giá trị xấp xỉ của ảnh của tập mờ khi áp dụng nguyên lý mở rộng của Zadeh.
+
+Trong báo cáo này ta chỉ chú ý tới những tập mờ đặc biệt có tên:
+\textit{piecewise linear fuzzy set}.
+Với các loại tập mờ này, giải thuật được đề xuất có thể được sử dụng để tính 
+nguyên lý mở rộng Zadeh. Khác với các cách tiếp cận đã có, cách tiếp cận này 
+không phải là phương pháp xấp xỉ mà là phương pháp tính toán chính xác áp dụng 
+cho hệ động lực mờ.  
+Mặc dù ta không xét đến các ánh xạ liên tục bất kì mà chỉ cho các ánh xạ
+piecewise linear. Tuy nhiên tập các ánh xạ piecewise linear này là
+\textit{dense} trong tập các ánh xạ liên tục nên có thể xấp xỉ một 
+ánh xạ liên lục bất kì với sai số nhỏ tùy ý.
+Đồng thời cách tiếp cận này có thể áp dụng cho các ánh xạ không liên tục.
 
 \end{document}

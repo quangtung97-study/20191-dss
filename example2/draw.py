@@ -21,8 +21,9 @@ def read_from(filename):
 
     return segments
 
-_, plts = plt.subplots(2, 1)
+_, plts = plt.subplots(1, 3, sharex=True)
 
-plot_segments(plts[0], read_from("input"))
-plot_segments(plts[1], read_from("output"))
+plot_segments(plts[0], read_from("data/input"))
+plot_segments(plts[1], read_from("data/func"))
+plot_segments(plts[2], read_from("data/output"))
 plt.show()

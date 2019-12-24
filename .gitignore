@@ -2,3 +2,5 @@
 **/*.rs.bk
 /input
 /output
+/*/data/
+/*/data3d/
