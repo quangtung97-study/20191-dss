@@ -7,7 +7,8 @@ report.pdf: report.bbl 	\
 			sections/introduction.tex \
 			sections/basic.tex \
 			sections/algorithm.tex \
-			sections/implementation.tex
+			sections/implementation.tex \
+			sections/conclusion.tex
 	pdflatex report.tex
 
 report.bbl: report.bib 
