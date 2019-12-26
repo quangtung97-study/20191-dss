@@ -67,24 +67,28 @@ pub fn apply_before_supremum(set: &FuzzySet, func: &Function) -> FuzzySet {
     let new_set_segments = new_segments(&set.segments, &positions);
     let new_func_segments = new_segments(&func.segments, &positions);
 
-    for p in positions.iter() {
-        print!("{} ", p);
-    }
-    println!("");
+    // for p in positions.iter() {
+    //     print!("{} ", p);
+    // }
+    // println!("");
 
-    show_segments(&new_set_segments);
-    show_segments(&new_func_segments);
+    // show_segments(&new_set_segments);
+    // show_segments(&new_func_segments);
     assert!(new_set_segments.len() <= new_func_segments.len());
 
     let it1 = new_set_segments.iter();
     let it2 = new_func_segments.iter();
 
     for (s1, s2) in it1.zip(it2) {
-        println!("Segment: ({}, {}) ({}, {})", s1.a.x, s1.a.y, s1.b.x, s1.b.y);
-        println!("Segment: ({}, {}) ({}, {})", s2.a.x, s2.a.y, s2.b.x, s2.b.y);
+        // println!("Segment: ({}, {}) ({}, {})", s1.a.x, s1.a.y, s1.b.x, s1.b.y);
+        // println!("Segment: ({}, {}) ({}, {})", s2.a.x, s2.a.y, s2.b.x, s2.b.y);
+        assert_eq!(s1.a.x, s2.a.x);
+        assert_eq!(s1.b.x, s2.b.x);
         let a = point(s2.a.y, s1.a.y);
         let b = point(s2.b.y, s1.b.y);
-        result.push(segment(a, b));
+        if a.x != b.x {
+            result.push(segment(a, b));
+        }
     }
 
     FuzzySet { segments: result }
