@@ -355,10 +355,12 @@ fn run_example4_3d_complexity() {
 }
 
 fn main() {
-    // run_example2_3d();
-    // run_example3_3d();
-    // run_example4_3d();
-    run_example2_3d_complexity();
-    run_example3_3d_complexity();
-    run_example4_3d_complexity();
+    run_example2();
+    run_example2_3d();
+    run_example3_3d();
+    run_example4_3d();
+
+    // run_example2_3d_complexity();
+    // run_example3_3d_complexity();
+    // run_example4_3d_complexity();
 }
